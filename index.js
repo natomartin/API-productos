@@ -23,7 +23,7 @@ const writeData = (data) =>{
 
 app.get("/", (req,res)=>{
     res.send("API Productos!")
-}
+});
 
 app.get("/productos/list",(req, res)=>{
     const data=readData();
