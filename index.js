@@ -40,6 +40,7 @@ app.get("/productos/searchById/:id",(req, res)=>{
 app.post("/productos/new",(req, res)=>{
     const data=readData();
     const body=req.body;
+    const maxId = data.productos.length > 0 ? Math.max(...data.productos.map(p => p.id)) : 0;
     const newProducto={
         id: data.productos.length+1,
         ...body,
