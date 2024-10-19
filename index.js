@@ -22,7 +22,7 @@ const writeData = (data) =>{
 }
 
 app.get("/", (req,res)=>{
-    res.json("API Productos!")
+    res.send("API Productos!")
 }
 
 app.get("/productos/list",(req, res)=>{
