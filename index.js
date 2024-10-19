@@ -37,18 +37,22 @@ app.get("/productos/searchById/:id",(req, res)=>{
     res.json(producto);
 });
 
-app.post("/productos/new",(req, res)=>{
-    const data=readData();
-    const body=req.body;
+app.post("/productos/new", (req, res) => {
+    const data = readData();
+    const body = req.body;
     const maxId = data.productos.length > 0 ? Math.max(...data.productos.map(p => p.id)) : 0;
-    const newProducto={
+    const newProducto = {
         id: maxId + 1,
-        ...body,
+        nombre: body.nombre,
+        precio: body.precio,
+        stock: body.stock,
+        descripcion: body.descripcion
     };
     data.productos.push(newProducto);
     writeData(data, res);
     res.json(newProducto);
 });
+
 
 app.put("/productos/update/:id",(req, res)=>{
     const data=readData();
