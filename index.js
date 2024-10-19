@@ -46,7 +46,7 @@ app.post("/productos/new",(req, res)=>{
         ...body,
     };
     data.productos.push(newProducto);
-    writeData(data);
+    writeData(data, res);
     res.json(newProducto);
 });
 
