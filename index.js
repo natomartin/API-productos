@@ -53,26 +53,18 @@ app.post("/productos/new", (req, res) => {
     res.json(newProducto);
 });
 
-
-app.put("/productos/update/:id", (req, res) => {
-    const data = readData();
-    const body = req.body;
-    const id = parseInt(req.params.id);
-    const productoIndex = data.productos.findIndex((producto) => producto.id === id);
-
-    if (productoIndex !== -1) {
-        data.productos[productoIndex] = {
-            ...data.productos[productoIndex],
-            ...body,
-        };
-        writeData(data);
-        res.json({ message: "Producto actualizado correctamente" });
-    } else {
-        res.status(404).json({ message: "Producto no encontrado" });
-    }
+app.put("/productos/update/:id",(req, res)=>{
+    const data=readData();
+    const body=req.body;
+    const id=parseInt(req.params.id);
+    const productoIndex=data.productos.findIndex((producto)=>producto.id==id);
+    data.productos[productoIndex]={
+        ...data.productos[productoIndex],
+        ...body,
+    };
+    writeData(data);
+    res.json({message:"Si"});
 });
-
-
 
 app.delete("/productos/delete/:id", (req,res)=>{
     const data=readData();
