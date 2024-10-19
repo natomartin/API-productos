@@ -59,16 +59,19 @@ app.put("/productos/update/:id", (req, res) => {
     const body = req.body;
     const id = parseInt(req.params.id);
     const productoIndex = data.productos.findIndex((producto) => producto.id === id);
-    if (productoIndex === -1) {
-        return res.status(404).json({ message: "Producto no encontrado" });
+
+    if (productoIndex !== -1) {
+        data.productos[productoIndex] = {
+            ...data.productos[productoIndex],
+            ...body,
+        };
+        writeData(data);
+        res.json({ message: "Producto actualizado correctamente" });
+    } else {
+        res.status(404).json({ message: "Producto no encontrado" });
     }
-    data.productos[productoIndex] = {
-        ...data.productos[productoIndex],
-        ...body,
-    };
-    writeData(data);
-    res.json({ message: "Producto actualizado correctamente" });
 });
+
 
 
 app.delete("/productos/delete/:id", (req,res)=>{
