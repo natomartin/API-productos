@@ -42,7 +42,7 @@ app.post("/productos/new",(req, res)=>{
     const body=req.body;
     const maxId = data.productos.length > 0 ? Math.max(...data.productos.map(p => p.id)) : 0;
     const newProducto={
-        id: id: maxId + 1,
+        id: maxId + 1,
         ...body,
     };
     data.productos.push(newProducto);
